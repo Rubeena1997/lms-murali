@@ -1,3 +1,4 @@
+// main.tsx file
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -7,10 +8,12 @@ import { queryClient } from "./lib/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 async function main() {
+  const VITE_API_URL = process.env.VITE_API_URL || 'http://localhost:8080/api';
+
   console.log({
     PROD: import.meta.env.PROD,
     MODE: import.meta.env.MODE,
-    VITE_API_URL: import.meta.env.VITE_API_URL,
+    VITE_API_URL,
   });
 
   if (import.meta.env.VITE_ENABLE_API_MOCKING) {
@@ -25,7 +28,7 @@ async function main() {
   ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-          <App />
+        <App />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </React.StrictMode>
