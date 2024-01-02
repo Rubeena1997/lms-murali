@@ -7,8 +7,7 @@ import { queryClient } from "./lib/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 async function main() {
-  const params = new URLSearchParams(window.location.search);
-  const VITE_API_URL = params.get('VITE_API_URL') || 'http://localhost:8080/api';
+  const VITE_API_URL = (window as any).__VITE_API_URL__ || 'http://localhost:8080/api';
 
   console.log({
     PROD: import.meta.env.PROD,
